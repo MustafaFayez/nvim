@@ -71,4 +71,5 @@ return require('packer').startup(function(use)
       require('windows').setup()
    end
   }
+  use 'ThePrimeagen/vim-be-good'
 end)
