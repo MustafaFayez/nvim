@@ -59,17 +59,12 @@ return require('packer').startup(function(use)
   }
   use 'nvim-tree/nvim-web-devicons'
   use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
-  use { "anuvyklack/windows.nvim",
-   requires = {
-      "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim"
-   },
-   config = function()
-      vim.o.winwidth = 10
-      vim.o.winminwidth = 10
-      vim.o.equalalways = false
-      require('windows').setup()
-   end
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+
+          require('Comment').setup()
+      end
   }
   use 'ThePrimeagen/vim-be-good'
 end)
