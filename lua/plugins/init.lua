@@ -5,14 +5,6 @@ return {
         dependencies = {'nvim-lua/plenary.nvim'} 
     },
     {
-        'rose-pine/neovim',
-        name = 'rose-pine',
-        config = function()
-            require("rose-pine").setup()
-            vim.cmd('colorscheme rose-pine')
-        end
-    },
-    {
         'nvim-treesitter/nvim-treesitter', 
         build = ':TSUpdate',
     },
@@ -64,4 +56,16 @@ return {
     },
     'ThePrimeagen/vim-be-good', 
     {'akinsho/toggleterm.nvim', version = "*", config = true},
+    {
+        'glacambre/firenvim',
+
+        -- Lazy load firenvim
+        -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+        cond = not not vim.g.started_by_firenvim,
+        build = function()
+            require("lazy").load({ plugins = "firenvim", wait = true })
+            vim.fn["firenvim#install"](0)
+        end
+    },
+    'lewis6991/impatient.nvim',
 }
