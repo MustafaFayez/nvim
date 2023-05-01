@@ -2,38 +2,34 @@ return {
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         -- or                            , branch = '0.1.x',
+<<<<<<< HEAD
         dependencies = {'nvim-lua/plenary.nvim'} 
     },
     {
         'nvim-treesitter/nvim-treesitter', 
         build = ':TSUpdate',
+=======
+        dependencies = {'nvim-lua/plenary.nvim', lazy = true},  
+        lazy = true, 
+        event = "VeryLazy",
+        keys = {
+            { '<leader>pf', "<CMD>Telescope find_files<CR>", mode = { "n", "v" } },
+        }
+>>>>>>> 05fea46 (made it faster using more lazy loading. added noice plugin as well)
     },
+    {'folke/tokyonight.nvim'},
+    -- {
+    --     'rose-pine/neovim',
+    --     name = 'rose-pine',
+    --     config = function()
+    --         require("rose-pine").setup()
+    --         vim.cmd('colorscheme rose-pine')
+    --     end
+    -- },
     'nvim-treesitter/playground',
     'ThePrimeagen/harpoon',
     'mbbill/undotree',
     'tpope/vim-fugitive', 
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        dependencies = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
-            {'williamboman/mason.nvim'},           -- Optional
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},         -- Required
-            {'hrsh7th/cmp-nvim-lsp'},     -- Required
-            {'hrsh7th/cmp-buffer'},       -- Optional
-            {'hrsh7th/cmp-path'},         -- Optional
-            {'saadparwaiz1/cmp_luasnip'}, -- Optional
-            {'hrsh7th/cmp-nvim-lua'},     -- Optional
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},             -- Required
-            {'rafamadriz/friendly-snippets'}, -- Optional
-        }
-    },
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
