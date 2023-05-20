@@ -32,6 +32,10 @@ return {
 
       cmp.setup({
         mapping = {
+          ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),

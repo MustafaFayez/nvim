@@ -49,5 +49,12 @@ return {
     },
     'ThePrimeagen/vim-be-good', 
     {'akinsho/toggleterm.nvim', version = "*", config = true},
-    'lewis6991/impatient.nvim',
+    {
+        "ggandor/leap.nvim",
+        keys = { "s", "S" },
+        config = function()
+            local leap = require "leap"
+            leap.set_default_keymaps()
+        end,
+    }
 }
