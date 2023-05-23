@@ -14,7 +14,6 @@ return {
             { '<leader>pf', "<CMD>Telescope find_files<CR>", mode = { "n", "v" } },
         }
     },
-    {'folke/tokyonight.nvim'},
     -- {
     --     'rose-pine/neovim',
     --     name = 'rose-pine',
@@ -27,20 +26,7 @@ return {
     'ThePrimeagen/harpoon',
     'mbbill/undotree',
     'tpope/vim-fugitive', 
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = {
-            "nvim-web-devicons",
-        },
-        keys = {
-            { "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle tree" },
-        },
-        config = function()
-            require("nvim-tree").setup({})
-        end
-
-    },
-    {
+        {
         'numToStr/Comment.nvim',
         config = function()
 
