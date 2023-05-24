@@ -2,7 +2,7 @@
 my nvim config 
 
 
-
+![My Image](screenshot.png)
 
 I use Lazy.nvim as my plugin manager, and try to always optimize my startup time. 
 only have needed plugins
