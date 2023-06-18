@@ -39,3 +39,4 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+

@@ -17,3 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins')
 -- Lua
 vim.cmd[[colorscheme tokyonight-night]]
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg="#f4d7d7" })
+vim.api.nvim_set_hl(0, 'LineNr', { fg="#f70084" })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg="#c6e2ff" })
