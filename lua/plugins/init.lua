@@ -14,14 +14,6 @@ return {
             { '<leader>pf', "<CMD>Telescope find_files<CR>", mode = { "n", "v" } },
         }
     },
-    -- {
-    --     'rose-pine/neovim',
-    --     name = 'rose-pine',
-    --     config = function()
-    --         require("rose-pine").setup()
-    --         vim.cmd('colorscheme rose-pine')
-    --     end
-    -- },
     'nvim-treesitter/playground',
     'ThePrimeagen/harpoon',
     'mbbill/undotree',
@@ -33,8 +25,6 @@ return {
             require('Comment').setup()
         end
     },
-    'ThePrimeagen/vim-be-good', 
-    {'akinsho/toggleterm.nvim', version = "*", config = true},
     {
         "ggandor/leap.nvim",
         keys = { "s", "S" },
@@ -42,5 +32,6 @@ return {
             local leap = require "leap"
             leap.set_default_keymaps()
         end,
-    }
+    },
+    'RRethy/vim-illuminate'
 }
