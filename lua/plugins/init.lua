@@ -33,5 +33,6 @@ return {
             leap.set_default_keymaps()
         end,
     },
-    'RRethy/vim-illuminate'
+    'RRethy/vim-illuminate',
+    'rush-rs/tree-sitter-asm' 
 }
