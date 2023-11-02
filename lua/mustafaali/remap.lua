@@ -36,12 +36,18 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-vim.keymap.set("n", "<leader>b", "<cmd> !black %<CR>")
-vim.keymap.set("n", "<leader>bd", "<cmd>BufferOrderByDirectory<CR>")
-vim.keymap.set("n", "<leader>bc", "<cmd>BufferClose<CR>")
-vim.keymap.set("n", "<leader>bca", "<cmd>BufferCloseAllButCurrent<CR>")
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferPick<CR>")
+-- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", "<cmd> !black %<CR>")
+vim.keymap.set("n", "<leader>fd", "<cmd> !darker %<CR>")
+vim.keymap.set("n", "<leader>bp", function()
+    require('cokeline.mappings').pick("focus")
+
+end, { desc = "Pick a buffer to focus" })
+-- vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
+-- vim.keymap.set("n", "<leader>dpr", function() require('dap-python').test_method() end)
+
+-- Git related 
+vim.keymap.set("n", "<leader>tb", "<cmd>Telescope git_branches<CR>")
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -49,6 +55,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("v", "<leader>s", [[y:%s/\<<C-r>"\>/<C-r>"/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/mustafaali/packer.lua<CR>");
@@ -115,6 +122,15 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Trouble nvim --
+vim.keymap.set("n", "<leader>xx", function() require("trouble").open() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end)
+
+vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").open("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") end)
 
 vim.keymap.set("n", "<leader>nd", function()
   require("noice").cmd("dismiss")
