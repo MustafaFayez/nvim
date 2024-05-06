@@ -36,17 +36,17 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
--- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-vim.keymap.set("n", "<leader>f", "<cmd> !black %<CR>")
-vim.keymap.set("n", "<leader>fd", "<cmd> !darker %<CR>")
-vim.keymap.set("n", "<leader>bp", function()
-    require('cokeline.mappings').pick("focus")
-
-end, { desc = "Pick a buffer to focus" })
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+-- vim.keymap.set("n", "<leader>f", "<cmd> !black %<CR>")
+-- vim.keymap.set("n", "<leader>f", "<cmd> !autopep8 %<CR>")
+-- vim.keymap.set("n", "<leader>fd", "<cmd> !darker %<CR>")
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePick <CR>")
+vim.keymap.set("n", "<leader>bpc", "<cmd>BufferLinePickClose <CR>")
+vim.keymap.set("n", "<leader>bc", "<cmd>BufferLineCloseOthers <CR>")
 -- vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
 -- vim.keymap.set("n", "<leader>dpr", function() require('dap-python').test_method() end)
 
--- Git related 
+-- Git related
 vim.keymap.set("n", "<leader>tb", "<cmd>Telescope git_branches<CR>")
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -135,3 +135,19 @@ vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") e
 vim.keymap.set("n", "<leader>nd", function()
   require("noice").cmd("dismiss")
 end)
+
+-- Define a variable to keep track of the corn state
+local corn_on = false
+-- Function to toggle the corn state
+function ToggleCorn()
+  if corn_on then
+    corn_on = false
+    vim.cmd('CornToggle off')
+  else
+    corn_on = true
+    vim.cmd('CornToggle on')
+  end
+end
+
+-- Map the function to <leader>c
+vim.api.nvim_set_keymap('n', '<leader>c', ':lua ToggleCorn()<CR>', { noremap = true, silent = true })

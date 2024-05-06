@@ -46,18 +46,22 @@ return {
 
   -- LSP
   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "mypy",
+        "ruff",
+        "pyright",
+      },
+    },
+  },
+  {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
     event = {'BufReadPre', 'BufNewFile'},
     dependencies = {
       {'hrsh7th/cmp-nvim-lsp'},
       {'williamboman/mason-lspconfig.nvim'},
-      {
-        'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
     },
     config = function()
       -- This is where all the LSP shenanigans will live
@@ -98,14 +102,14 @@ return {
       })
       -- require('lspconfig').pylint.setup({})
       require('lspconfig').bashls.setup({})
-      require'lspconfig'.ruff_lsp.setup{
-        init_options = {
-          settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            args = {},
-          }
-        }
-      }
+      -- require'lspconfig'.ruff_lsp.setup{
+      --   init_options = {
+      --     settings = {
+      --       -- Any extra CLI arguments for `ruff` go here.
+      --       args = {},
+          -- }
+        -- }
+      -- }
       -- require('lspconfig').pylsp.setup {
       --   filetypes = {'python'},
       --   settings = {
