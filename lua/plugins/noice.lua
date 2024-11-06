@@ -7,21 +7,26 @@ return {
         require("noice").setup({
             -- add any options here
             lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                override = {
-                  ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                  ["vim.lsp.util.stylize_markdown"] = true,
-                  ["cmp.entry.get_documentation"] = true,
-                },
+              signature = {
+                enabled = false,
+              },
+              -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+              override = {
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                ["vim.lsp.util.stylize_markdown"] = true,
+                ["cmp.entry.get_documentation"] = true,
+              },
+              hover = {
+                enabled = false,
+              }
             },
             notify = {
-                level = 2, 
+                level = 2,
             }
         })
         require("notify").setup({
             background_colour = "#000000", -- replace with your preferred color
             log_level = 2,
-            
         })
     end,
     dependencies = {

@@ -1,7 +1,7 @@
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    -- branch = 'v3.x',
     lazy = true,
     config = function()
 
@@ -49,6 +49,9 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "clangd",
+        "clang-format",
+        "codelldb",
         "mypy",
         "ruff",
         "pyright",
@@ -70,11 +73,23 @@ return {
 
       lsp.on_attach(function(client, bufnr)
         lsp.default_keymaps({buffer = bufnr})
+        -- Check if the server supports signature help and set it accordingly
+        if client.server_capabilities.signatureHelpProvider then
+          require('lsp_signature').on_attach({
+            bind = true,
+            handler_opts = {border = "single"}
+          }, bufnr)
+        else
+          client.server_capabilities.signatureHelpProvider = false
+        end
       end)
 
       -- (Optional) Configure lua language server for neovim
       require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
       require('lspconfig').pyright.setup({
+        capabilities = {
+          offsetEncoding = { "utf-16" },
+        },
         on_attach = lsp.on_attach,
         -- flags = lsp_flags,
         settings = {
@@ -102,6 +117,15 @@ return {
       })
       -- require('lspconfig').pylint.setup({})
       require('lspconfig').bashls.setup({})
+      require('lspconfig').clangd.setup({
+        capabilities = {
+          offsetEncoding = { "utf-16" },
+        },
+        on_attach = function (client, bufnr)
+          client.server_capabilities.signatureHelpProvider = false
+          lsp.on_attach(client, bufnr)
+        end,
+      })
       -- require'lspconfig'.ruff_lsp.setup{
       --   init_options = {
       --     settings = {

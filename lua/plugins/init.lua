@@ -79,35 +79,53 @@ return {
       -- refer to the configuration section below
     }
   },
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  --   dependencies = "mfussenegger/nvim-dap",
-  --   config = function()
-  --     local dap = require("dap")
-  --     local dapui = require("dapui")
-  --     dapui.setup()
-  --     dap.listeners.after.event_initialized["dapui_config"] = function()
-  --       dapui.open()
-  --     end
-  --     dap.listeners.before.event_terminated["dapui_config"] = function()
-  --       dapui.close()
-  --     end
-  --     dap.listeners.before.event_exited["dapui_config"] = function()
-  --       dapui.close()
-  --     end
-  --   end
-  -- },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end
+  },
   {
     'nvimtools/none-ls.nvim',
-    ft = "python",
+    event = "VeryLazy",
     config = function()
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       local null_ls = require("null-ls")
       null_ls.setup({
         sources = {
-          null_ls.builtins.diagnostics.mypy,
-          null_ls.builtins.diagnostics.ruff,
-          null_ls.builtins.formatting.autopep8,
+          null_ls.builtins.formatting.clang_format,
         },
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+
+            vim.api.nvim_clear_autocmds({
+              group = augroup,
+              buffer = bufnr,
+            })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr })
+              end,
+            })
+          end
+        end
       })
     end
   },
@@ -146,24 +164,24 @@ return {
         vim.g.molten_output_win_max_height = 12
     end,
   },
+  'ray-x/lsp_signature.nvim',
   {
-    "kawre/leetcode.nvim",
-    build = ":TSUpdate html",
+    'mfussenegger/nvim-dap',
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
-
-      "nvim-lua/plenary.nvim", -- required by telescope
-      "MunifTanjim/nui.nvim",
-
-      -- optional
-      "nvim-treesitter/nvim-treesitter",
-      "rcarriga/nvim-notify",
-
-      "nvim-tree/nvim-web-devicons",
+      'mfussenegger/nvim-dap',
     },
     opts = {
-      lang = "python3"
-      -- configuration goes here
-    },
-  }
+      handlers = { },
+      ensure_installed = {
+        "codelldb",
+      }
+    }
+  },
+  'nvim-neotest/nvim-nio',
+  'sakhnik/nvim-gdb',
+  'github/copilot.vim'
 }

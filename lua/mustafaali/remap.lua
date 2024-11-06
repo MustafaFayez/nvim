@@ -29,14 +29,14 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+-- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 -- vim.keymap.set("n", "<leader>f", "<cmd> !black %<CR>")
 -- vim.keymap.set("n", "<leader>f", "<cmd> !autopep8 %<CR>")
 -- vim.keymap.set("n", "<leader>fd", "<cmd> !darker %<CR>")
@@ -136,18 +136,7 @@ vim.keymap.set("n", "<leader>nd", function()
   require("noice").cmd("dismiss")
 end)
 
--- Define a variable to keep track of the corn state
-local corn_on = false
--- Function to toggle the corn state
-function ToggleCorn()
-  if corn_on then
-    corn_on = false
-    vim.cmd('CornToggle off')
-  else
-    corn_on = true
-    vim.cmd('CornToggle on')
-  end
-end
-
 -- Map the function to <leader>c
-vim.api.nvim_set_keymap('n', '<leader>c', ':lua ToggleCorn()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>c', '<cmd> Corn toggle <CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>db', '<cmd> DapToggleBreakpoint <CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dr', '<cmd> DapContinue <CR>', { noremap = true, silent = true })
