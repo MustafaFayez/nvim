@@ -15,10 +15,9 @@ return {
       { '<leader>pf', "<CMD>Telescope find_files<CR>", mode = { "n", "v" } },
     }
   },
-  'nvim-treesitter/playground',
+  -- 'nvim-treesitter/playground',
   'ThePrimeagen/harpoon',
   'mbbill/undotree',
-  'tpope/vim-fugitive',
   {
     'numToStr/Comment.nvim',
     config = function()
@@ -80,27 +79,6 @@ return {
     }
   },
   {
-    "rcarriga/nvim-dap-ui",
-    event = "VeryLazy",
-    dependencies = "mfussenegger/nvim-dap",
-    config = function()
-
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup()
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-    end
-  },
-  {
     'nvimtools/none-ls.nvim',
     event = "VeryLazy",
     config = function()
@@ -153,21 +131,18 @@ return {
       }
     end
   },
-  {
-    "benlubas/molten-nvim",
-    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-    build = ":UpdateRemotePlugins",
-
-    init = function()
-        -- this is an example, not a default. Please see the readme for more configuration options
-
-        vim.g.molten_output_win_max_height = 12
-    end,
-  },
+  -- {
+  --   "benlubas/molten-nvim",
+  --   -- version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+  --   build = ":UpdateRemotePlugins",
+  --
+  --   init = function()
+  --       -- this is an example, not a default. Please see the readme for more configuration options
+  --
+  --       vim.g.molten_output_win_max_height = 12
+  --   end,
+  -- },
   'ray-x/lsp_signature.nvim',
-  {
-    'mfussenegger/nvim-dap',
-  },
   {
     "jay-babu/mason-nvim-dap.nvim",
     event = "VeryLazy",
@@ -183,5 +158,5 @@ return {
   },
   'nvim-neotest/nvim-nio',
   'sakhnik/nvim-gdb',
-  'github/copilot.vim'
+  -- 'github/copilot.vim'
 }

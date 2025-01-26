@@ -11,6 +11,18 @@ return {
                 -- component_separators = '|',
                 -- section_separators = '',
             },
+            sections = {
+                lualine_c = {
+                    {
+                        'filename',
+                        path = 1,
+                        {
+                            function() return require('dap').status() end,
+                            cond = function() return require('dap').session() ~= nil end,
+                        },
+                    },
+                },
+            },
         }
     end
 

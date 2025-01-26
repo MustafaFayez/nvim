@@ -8,7 +8,7 @@ return {
       -- This is where you modify the settings for lsp-zero
       -- Note: autocompletion settings will not take effect
 
-      require('lsp-zero.settings').preset({})
+      -- require('lsp-zero.settings').preset({})
     end
   },
 
@@ -83,6 +83,12 @@ return {
           client.server_capabilities.signatureHelpProvider = false
         end
       end)
+      lsp.extend_lspconfig({
+          capabilities = require('cmp_nvim_lsp').default_capabilities(),
+          lsp_attach = lsp_attach,
+          float_border = 'rounded',
+          sign_text = true,
+      })
 
       -- (Optional) Configure lua language server for neovim
       require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())

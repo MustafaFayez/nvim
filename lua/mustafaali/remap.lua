@@ -29,7 +29,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
--- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -43,8 +42,6 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePick <CR>")
 vim.keymap.set("n", "<leader>bpc", "<cmd>BufferLinePickClose <CR>")
 vim.keymap.set("n", "<leader>bc", "<cmd>BufferLineCloseOthers <CR>")
--- vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
--- vim.keymap.set("n", "<leader>dpr", function() require('dap-python').test_method() end)
 
 -- Git related
 vim.keymap.set("n", "<leader>tb", "<cmd>Telescope git_branches<CR>")
@@ -138,5 +135,4 @@ end)
 
 -- Map the function to <leader>c
 vim.api.nvim_set_keymap('n', '<leader>c', '<cmd> Corn toggle <CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>db', '<cmd> DapToggleBreakpoint <CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dr', '<cmd> DapContinue <CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>o', '<cmd> Oil <CR>', { noremap = true, silent = true })
